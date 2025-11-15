@@ -1,12 +1,19 @@
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
 export default function Index() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const handleLogin = () => {
-    Alert.alert('Login', `Email: ${email}, Password: ${password}`);
+    // Simple validation: check if email and password are not empty
+    if (email && password) {
+      router.push('/home');
+    } else {
+      alert('Please enter both email and password.');
+    }
   };
 
   return (
